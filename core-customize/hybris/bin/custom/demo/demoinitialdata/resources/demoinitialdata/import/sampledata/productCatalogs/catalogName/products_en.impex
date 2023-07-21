@@ -1,0 +1,76 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+# ImpEx for Importing Product Localisations
+ 
+$productCatalog=powertoolsProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$clAttrModifiers=system='PowertoolsClassification',version='1.0',translator=de.hybris.platform.catalog.jalo.classification.impex.ClassificationAttributeTranslator,lang=EN
+
+$feature1=@sustainable_materials[$clAttrModifiers];
+INSERT_UPDATE Product;code[unique=true];$feature1;$catalogVersion;
+                     ;3857735;"Sustainable Materials: FSC-certified TENCEL™ Lyocell (eucalyptus tree fiber) and ZQ Merino Wool blend upper ZQ Merino wool and recycled polyester ripstop";
+
+$feature2 = @carbon_footprint[$clAttrModifiers];
+INSERT_UPDATE Product; code[unique = true]; $feature2;$catalogVersion;
+                     ; 3857735 ; "16.3"
+                     ; 3857731 ; "36.3"
+
+$feature3 = @carbon_offsetcredit[$clAttrModifiers];
+INSERT_UPDATE Product; code[unique = true]; $feature3;$catalogVersion;
+                     ; 3857735 ; "1.73"
+                     ; 3857731 ; "1.73"
+
+
+#################################### CarbonProduct Images ######################################
+
+$productCatalog=powertoolsProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$thumbnail=thumbnail(code, $catalogVersion)
+$picture=picture(code, $catalogVersion)
+$thumbnails=thumbnails(code, $catalogVersion)
+$detail=detail(code, $catalogVersion)
+$normal=normal(code, $catalogVersion)
+$others=others(code, $catalogVersion)
+$data_sheet=data_sheet(code, $catalogVersion)
+$medias=medias(code, $catalogVersion)
+$galleryImages=galleryImages(qualifier, $catalogVersion)
+$siteResource=jar:de.hybris.demo.initialdata.setup.InitialDataSystemSetup&/demoinitialdata/resources/demoinitialdata/import/sampledata/productCatalogs/$productCatalog
+$siteResource=jar:de.hybris.demo.initialdata.constants.DemoInitialDataConstants&/demoinitialdata/import/sampledata/productCatalogs/$productCatalog
+
+$approved=approvalstatus(code)[default='check']
+
+# Language
+$lang=en
+
+# Insert Products
+INSERT_UPDATE Product;code[unique=true];name[lang=en];
+                     ;CarbonOffsetProduct;Carbon Offset Product;
+
+INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]
+                         ;images;images
+
+# Media formats
+INSERT_UPDATE MediaFormat;qualifier[unique=true]
+                         ;1200Wx1200H
+                         ;515Wx515H
+                         ;365Wx246H
+                         ;300Wx300H
+                         ;96Wx96H
+                         ;65Wx65H
+                         ;30Wx30H
+
+
+INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];$catalogVersion;folder(qualifier)[default=images]
+                   ;1200Wx1200H;/1200Wx1200H/carbonProduct.jpg;$siteResource/1200Wx1200H/carbonProduct.jpg
+                   ;515Wx515H;/515Wx515H/carbonProduct.png;$siteResource/515Wx515H/carbonProduct.png
+                   ;300Wx300H;/300Wx300H/carbonProduct.png;$siteResource/300Wx300H/carbonProduct.png
+                   ;96Wx96H;/96Wx96H/carbonProduct.png;$siteResource/96Wx96H/carbonProduct.png
+                   ;65Wx65H;/65Wx65H/carbonProduct.png;$siteResource/65Wx65H/carbonProduct.png
+                   ;30Wx30H;/30Wx30H/carbonProduct.png;$siteResource/30Wx30H/carbonProduct.png
+
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion
+                            ;carbonProduct;/1200Wx1200H/carbonProduct.jpg,/515Wx515H/carbonProduct.png,/300Wx300H/carbonProduct.png,/96Wx96H/carbonProduct.png,/65Wx65H/carbonProduct.png,/30Wx30H/carbonProduct.png
+
+INSERT_UPDATE Product;code[unique=true];$picture;$thumbnail;$detail;$others;$normal;$thumbnails;$galleryImages;$catalogVersion
+                     ;CarbonOffsetProduct;/300Wx300H/carbonProduct.png;/96Wx96H/carbonProduct.png;/1200Wx1200H/carbonProduct.jpg;/515Wx515H/carbonProduct.png,/65Wx65H/carbonProduct.png,/30Wx30H/carbonProduct.png;/300Wx300H/carbonProduct.png;/96Wx96H/carbonProduct.png;carbonProduct

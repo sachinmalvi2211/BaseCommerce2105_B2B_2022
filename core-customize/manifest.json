@@ -1,0 +1,585 @@
+{
+    "commerceSuiteVersion": "2105",
+    "enableImageProcessingService": true,
+    "extensionPacks" : [
+	{
+		"name" : "hybris-commerce-integrations",
+		"version" : "2108.0"
+	}
+    ],
+    "extensions": [
+        "cloudmediaconversion",  
+        "mediaconversionbackoffice",
+		"demobackoffice",
+		"democore",
+		"demofacades",
+		"demoinitialdata",
+		"demostorefront",
+		"demofulfilmentprocess",
+		"demoservicesocc",
+		"spartacussampledata",
+		"adaptivesearch",
+		"adaptivesearchbackoffice",
+		"adaptivesearchfacades",
+		"adaptivesearchsamplesaddon",
+		"adaptivesearchsolr",
+		"adaptivesearchwebservices",
+		"apiregistrybackoffice",
+		"apiregistryservices",
+		"assistedservicecustomerinterestsaddon",
+		"assistedservicecustomerinterestsfacades",
+		"assistedservicefacades",
+		"assistedservicepromotionaddon",
+		"assistedservicepromotionfacades",
+		"assistedserviceservices",
+		"assistedservicestorefront",
+		"assistedservicewebservices",
+		"assistedserviceyprofileaddon",
+		"assistedserviceyprofilefacades",
+		"yaasyprofileconnect",
+		"b2bacceleratoraddon",
+		"b2bacceleratorfacades",
+		"b2bacceleratorservices",
+		"b2bocc",
+		"b2bocctests",
+		"b2bwebservicescommons",
+		"commerceorgaddon",
+		"commerceorgsamplesaddon",
+		"powertoolsstore",
+		"accountsummaryaddon",
+		"b2bpunchout",
+		"b2bpunchoutaddon",
+		"savedorderforms",
+		"savedorderformsocc",
+		"b2bapprovalprocess",
+		"b2bapprovalprocessfacades",
+		"b2bcommerce",
+		"b2bcommercebackoffice",
+		"b2bcommercefacades",
+		"apparelstore",
+		"electronicsstore",
+		"captchaaddon",
+		"multicountrysampledataaddon",
+		"wishlist",
+		"pcmbackofficesamplesaddon",
+		"classificationgroupsservices",
+		"mediaconversionbackoffice",
+		"patchesbackoffice",
+		"pcmbackoffice",
+		"backoffice",
+		"platformbackoffice",
+		"ybackoffice",
+		"yaddon",
+		"basecommerce",
+		"basecommercebackoffice",
+		"customerreview",
+		"payment",
+		"promotions",
+		"promotionsbackoffice",
+		"voucher",
+		"voucherbackoffice",
+		"profileservices",
+		"profiletagaddon",
+		"merchandisingaddon",
+		"merchandisingcmswebservices",
+		"merchandisingservices",
+		"merchandisingservicesbackoffice",
+		"merchandisingsmartedit",
+		"merchandisingstorefrontsampledataaddon",
+		"admincockpit",
+		"productcockpit",
+		"cockpit",
+		"commercefacades",
+		"commerceservices",
+		"commerceservicesbackoffice",
+		"commercewebservices",
+		"commercewebservicescommons",
+		"commercewebservicestests",
+		"yocc",
+		"yocctests",
+		"configurablebundleaddon",
+		"configurablebundlebackoffice",
+		"configurablebundlefacades",
+		"configurablebundleocc",
+		"configurablebundleocctests",
+		"configurablebundleservices",
+		"configurablebundlecockpits",
+		"sapproductconfigb2baddon",
+		"sapproductconfigb2bservices",
+		"sapproductconfigfacades",
+		"sapproductconfigocc",
+		"sapproductconfigocctests",
+		"sapproductconfigrules",
+		"sapproductconfigrulesbackoffice",
+		"sapproductconfigruntimeinterface",
+		"sapproductconfigruntimemock",
+		"sapproductconfigservices",
+		"ysapproductconfigaddon",
+		"consignmenttrackingaddon",
+		"consignmenttrackingbackoffice",
+		"consignmenttrackingfacades",
+		"consignmenttrackingmock",
+		"consignmenttrackingocc",
+		"consignmenttrackingservices",
+		"acceleratorbackoffice",
+		"acceleratorcms",
+		"acceleratorfacades",
+		"acceleratorocc",
+		"acceleratorservices",
+		"acceleratorstorefrontcommons",
+		"addonsupport",
+		"couponbackoffice",
+		"couponfacades",
+		"couponservices",
+		"couponwebservices",
+		"customercouponaddon",
+		"customercouponbackoffice",
+		"customercouponfacades",
+		"customercouponocc",
+		"customercouponsamplesaddon",
+		"customercouponservices",
+		"customerinterestsaddon",
+		"customerinterestsfacades",
+		"customerinterestsocc",
+		"customerinterestsservices",
+		"customersupportbackoffice",
+		"customerticketingaddon",
+		"customerticketingfacades",
+		"customerticketingocc",
+		"customerticketingocctests",
+		"ticketsystem",
+		"ticketsystembackoffice",
+		"datahubadapter",
+		"datahubclient",
+		"dataimportcommons",
+		"entitlementbackoffice",
+		"entitlementfacades",
+		"entitlementservices",
+		"eventtrackingmodel",
+		"eventtrackingpublisher",
+		"eventtrackingservices",
+		"eventtrackingwsaddon",
+		"inboundservices",
+		"integrationbackoffice",
+		"integrationbackofficetest",
+		"integrationmonitoringbackoffice",
+		"integrationservices",
+		"odata2services",
+		"odata2webservices",
+		"odata2webservicesfeaturetests",
+		"outboundservices",
+		"outboundsync",
+		"outboundsyncbackoffice",
+		"webhookbackoffice",
+		"webhookservices",
+		"messagecentercsfacades",
+		"messagecentercsocc",
+		"messagecentercsservices",
+		"notificationaddon",
+		"notificationfacades",
+		"notificationocc",
+		"notificationservices",
+		"npmancillary",
+		"b2bordermanagementfacades",
+		"b2bordermanagementwebservices",
+		"ordermanagementaddon",
+		"ordermanagementfacades",
+		"ordermanagementwebservices",
+		"orderselfserviceaddon",
+		"warehousing",
+		"warehousingbackoffice",
+		"warehousingfacades",
+		"warehousingwebservices",
+		"personalizationcms",
+		"personalizationcmsbackoffice",
+		"personalizationcmsweb",
+		"personalizationfacades",
+		"personalizationintegration",
+		"personalizationintegrationbackoffice",
+		"personalizationsampledataaddon",
+		"personalizationservices",
+		"personalizationservicesbackoffice",
+		"personalizationsmartedit",
+		"personalizationwebservices",
+		"previewpersonalizationweb",
+		"personalizationaddon",
+		"personalizationyprofile",
+		"personalizationyprofilesampledataaddon",
+		"personalizationpromotions",
+		"personalizationpromotionsbackoffice",
+		"personalizationpromotionssampledataaddon",
+		"personalizationpromotionssmartedit",
+		"personalizationpromotionsweb",
+		"personalizationsearch",
+		"personalizationsearchbackoffice",
+		"personalizationsearchsamplesaddon",
+		"personalizationsearchsmartedit",
+		"personalizationsearchweb",
+		"adminapi",
+		"auditreportservices",
+		"deltadetection",
+		"embeddedserver",
+		"groovynature",
+		"mediaconversion",
+		"patches",
+		"springintegrationlibs",
+		"tomcatembeddedserver",
+		"yempty",
+		"yhacext",
+		"yvoid",
+		"promotionenginebackoffice",
+		"promotionenginesamplesaddon",
+		"promotionengineservices",
+		"droolsruleengineservices",
+		"ordercalculation",
+		"rulebuilderbackoffice",
+		"ruledefinitions",
+		"ruleengine",
+		"ruleenginebackoffice",
+		"ruleengineservices",
+		"kymaintegrationbackoffice",
+		"kymaintegrationservices",
+		"backofficesolrsearch",
+		"solrfacetsearch",
+		"solrfacetsearchbackoffice",
+		"solrserver",
+		"backofficesearchservices",
+		"searchbackoffice",
+		"searchprovidercssearchbackoffice",
+		"searchprovidercssearchservices",
+		"searchservices",
+		"selectivecartfacades",
+		"selectivecartservices",
+		"selectivecartsplitlistaddon",
+		"cmssmartedit",
+		"cmssmarteditwebservices",
+		"smartedit",
+		"smarteditaddon",
+		"smartedittools",
+		"smarteditwebservices",
+		"stocknotificationaddon",
+		"stocknotificationfacades",
+		"stocknotificationservices",
+		"subscriptionbundlecockpits",
+		"subscriptionbundlebackoffice",
+		"subscriptionbundlefacades",
+		"subscriptionbundleservices",
+		"subscriptioncockpits",
+		"subscriptionbackoffice",
+		"subscriptionfacades",
+		"subscriptionservices",
+		"textfieldconfiguratortemplateaddon",
+		"textfieldconfiguratortemplatebackoffice",
+		"textfieldconfiguratortemplatefacades",
+		"textfieldconfiguratortemplateocc",
+		"textfieldconfiguratortemplateocctests",
+		"textfieldconfiguratortemplateservices",
+		"timedaccesspromotionengineaddon",
+		"timedaccesspromotionenginebackoffice",
+		"timedaccesspromotionenginefacades",
+		"timedaccesspromotionengineocc",
+		"timedaccesspromotionenginesamplesaddon",
+		"timedaccesspromotionengineservices",
+		"cms2",
+		"cms2lib",
+		"cmsbackoffice",
+		"cmsfacades",
+		"cmsocc",
+		"cmswebservices",
+		"cmscockpit",
+		"previewwebservices",
+		"permissionsfacades",
+		"permissionswebservices",
+		"webservicescommons",
+		"ywebservices",
+		"sapcpiadapter",
+		"sapcpicustomerexchange",
+		"sapcpicustomerexchangeb2b",
+		"sapcpiorderexchange",
+		"sapcpiorderexchangeb2b",
+		"sapcpiproductexchange",
+		"sapcore",
+		"sapcoreconfiguration",
+		"sapcoreconfigurationbackoffice",
+		"sapcoreaddon",
+		"sapcustomerb2b",
+		"sapcustomerb2bbackoffice",
+		"sapmodel",
+		"sapmodelbackoffice",
+		"saporderexchangebackoffice",
+		"ysaperpreturnprocess",
+		"sapreturnsbackoffice",
+		"sapreturnsexchangeb2b",
+		"sapreturnsexchange",
+		"sapcpireturnsexchange",
+		"yacceleratorordermanagement"
+    ],
+    "useConfig": {
+        "properties": [
+            {
+                "location": "/hybris/config/local.properties"
+            },
+            {
+                "location": "/hybris/config/local-dev.properties",
+                "persona": "development"
+            }
+        ],
+        "extensions": {
+            "location": "/hybris/config/localextensions.xml",
+            "exclude": [
+                "azurecloudhotfolder",
+                "cloudcommons",
+                "cloudhotfolder"
+            ]
+        }
+    },
+    "properties": [
+        {
+            "key": "lang.packs",
+            "value": "de,en"
+        },
+		{
+		 "key": "installed.tenants",
+            "value": ""
+		},
+		{
+		 "key": "demostorefront.additionalWebSpringConfigs.b2bacceleratoraddon",
+            "value": "classpath:/b2bacceleratoraddon/web/spring/b2bacceleratoraddon-web-spring.xml,classpath:/b2bacceleratoraddon/web/spring/multi-step-checkout-config.xml,classpath:/b2bacceleratoraddon/web/spring/b2bacceleratoraddon-spring-security-config.xml"
+		},
+		{
+		 "key": "initialpassword.admin",
+            "value": "nimda"
+		}
+    ],
+    "storefrontAddons": [
+        {
+            "addons":[ 
+				"smarteditaddon",
+            	"textfieldconfiguratortemplateaddon",
+            	"assistedservicestorefront",
+				"assistedservicepromotionaddon",
+            	"customerticketingaddon",
+				"adaptivesearchsamplesaddon",
+				"multicountrysampledataaddon",
+				"pcmbackofficesamplesaddon",
+				"personalizationaddon"
+         ],
+	"storefronts": [
+                "demostorefront"
+            ],
+            "template": "yacceleratorstorefront"
+        },
+	{
+            "addons": [
+                "accountsummaryaddon",
+                "b2bacceleratoraddon",
+                "b2bpunchoutaddon",
+                "commerceorgaddon",
+                "commerceorgsamplesaddon",
+                "sapproductconfigb2baddon",
+				"orderselfserviceaddon"
+            ],
+            "storefront": "demostorefront",
+            "template": "yacceleratorstorefront"
+        }
+    ],
+    "aspects": [
+        {
+            "name": "backoffice",
+            "properties": [],
+            "webapps": [
+                {
+                    "name": "hac",
+                    "contextPath": "/hac"
+                },
+                {
+                    "name": "mediaweb",
+                    "contextPath": "/medias"
+                },
+                {
+                    "name": "backoffice",
+                    "contextPath": "/backoffice"
+                },
+                {
+                  "name":"odata2webservices",
+                  "contextPath":"/odata2webservices"
+               },
+               {
+                    "name": "oauth2",
+                    "contextPath": "/authorizationserver"
+               }
+            ]
+        },
+        {
+            "name": "accstorefront",
+            "properties": [
+                {
+                    "key": "spring.session.enabled",
+                    "value": "true"
+                },
+                {
+                    "key": "spring.session.demostorefront.save",
+                    "value": "async"
+                },
+                {
+                    "key": "spring.session.demostorefront.cookie.name",
+                    "value": "JSESSIONID"
+                },
+                {
+                    "key": "spring.session.demostorefront.cookie.path",
+                    "value": "/"
+                },
+                {
+                    "key": "storefrontContextRoot",
+                    "value": ""
+                }
+            ],
+            "webapps": [
+                {
+                    "name": "hac",
+                    "contextPath": "/hac"
+                },
+                {
+                    "name": "mediaweb",
+                    "contextPath": "/medias"
+                },
+                {
+                    "name": "demostorefront",
+                    "contextPath": ""
+                },
+                {
+                    "name": "acceleratorservices",
+                    "contextPath": "/acceleratorservices"
+                },
+				{
+				  "name": "oauth2",
+				  "contextPath": "/authorizationserver"
+				},
+				{
+				  "name": "smartedit",
+				  "contextPath": "/smartedit"
+				}
+            ]
+        },
+        {
+            "name": "backgroundProcessing",
+            "properties": [
+                {
+                    "key": "cluster.node.groups",
+                    "value": "integration,yHotfolderCandidate"
+                }
+            ],
+            "webapps": [
+                {
+                    "name": "hac",
+                    "contextPath": "/hac"
+                },
+                {
+                    "name": "mediaweb",
+                    "contextPath": "/medias"
+                }
+            ]
+        },
+        {
+            "name": "api",
+            "properties": [
+                {
+                    "key": "xss.filter.header.X-Frame-Options",
+                    "value": ""
+                },
+                {
+                    "key": "tomcat.maxthreads",
+                    "value": "1200"
+                },
+                {
+                    "key": "xss.filter.header.X-Frame-Options",
+                    "value": ""
+                },
+                {
+                    "key": "storefrontContextRoot",
+                    "value": "/demostorefront"
+                }
+            ],
+            "webapps": [
+                {
+                    "name": "hac",
+                    "contextPath": "/hac"
+                },
+                {
+                    "name": "commercewebservices",
+                    "contextPath": "/occ"
+                },
+				{
+                    "name": "demostorefront",
+                    "contextPath": "/demostorefront"
+                },
+                {
+                    "name": "smartedit",
+                    "contextPath": "/smartedit"
+                },
+                {
+                    "name": "cmssmartedit",
+                    "contextPath": "/cmssmartedit"
+                },
+                {
+                    "name": "smarteditwebservices",
+                    "contextPath": "/smarteditwebservices"
+                },
+                {
+                    "name": "cmssmarteditwebservices",
+                    "contextPath": "/cmssmarteditwebservices"
+                },
+                {
+                    "name": "acceleratorservices",
+                    "contextPath": "/acceleratorservices"
+                },
+                {
+                    "name": "oauth2",
+                    "contextPath": "/authorizationserver"
+                },
+                {
+                    "name": "cmswebservices",
+                    "contextPath": "/cmswebservices"
+                },
+                {
+                    "name": "permissionswebservices",
+                    "contextPath": "/permissionswebservices"
+                },
+                {
+                    "name": "previewwebservices",
+                    "contextPath": "/previewwebservices"
+                },
+                {
+                    "name": "mediaweb",
+                    "contextPath": "/medias"
+                },
+                {
+                    "name": "personalizationsmartedit",
+                    "contextPath": "/personalizationsmartedit"
+                },
+                {
+                    "name": "personalizationpromotionssmartedit",
+                    "contextPath": "/personalizationpromotionssmartedit"
+                },
+                {
+                    "name": "personalizationwebservices",
+                    "contextPath": "/personalizationwebservices"
+                },
+                {
+                    "name": "personalizationsearchsmartedit",
+                    "contextPath": "/personalizationsearchsmartedit"
+                }
+            ]
+        }
+    ],
+    "tests": {
+        "extensions": [],
+        "annotations": [
+            "UnitTests",
+            "IntegrationTests"
+        ],
+        "packages": [
+            "com.acme.*"
+        ]
+    }
+}

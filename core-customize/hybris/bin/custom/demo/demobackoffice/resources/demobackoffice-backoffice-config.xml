@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<config xmlns="http://www.hybris.com/cockpit/config"
+	xmlns:ea="http://www.hybris.com/cockpitng/component/editorArea"
+	xmlns:na="http://www.hybris.com/cockpitng/config/notifications">
+
+	<context merge-by="module" component="editorareaactions" type="Consignment">
+		<y:actions xmlns:y="http://www.hybris.com/cockpit/config/hybris">
+			<y:group qualifier="common">
+				<y:label>actiongroup.common</y:label>				
+				<y:action action-id="de.hybris.demo.backoffice.actions.confirmpickupaction" property="currentObject"/>				
+			</y:group>
+		</y:actions>
+    </context>
+
+	<!-- Notification Area-->
+	<context component="notification-area">
+	    <na:notification-area>	        
+	        <na:notifications eventType="demobackoffice.confirmpickup.event" level="SUCCESS">
+	            <na:message>hmc.action.confirmpickup.success</na:message>
+	        </na:notifications>
+	   </na:notification-area>
+	</context>
+
+	<context merge-by="type" parent="GenericItem" type="AbstractOrderEntry" component="editor-area">
+		<ea:editorArea name="">
+			<ea:tab name="hmc.Sustainability">
+				<ea:section name="hmc.orderentries.Sustainability">
+					<ea:attribute qualifier="carbonFootPrintWeight"/>
+					<ea:attribute qualifier="carbonOffsetCredit"/>
+					<ea:attribute qualifier="entryTotalSustanabilityValue"/>
+					<ea:attribute qualifier="isSustainableEntry"/>
+				</ea:section>
+			</ea:tab>
+		</ea:editorArea>
+	</context>
+
+	<context merge-by="type" parent="GenericItem" type="Product" component="editor-area">
+		<ea:editorArea name="">
+			<ea:tab name="hmc.Sustainability">
+				<ea:section name="hmc.Product.Sustainability">
+					<ea:attribute qualifier="carbonFootPrintWeight"/>
+					<ea:attribute qualifier="sustainableMaterials"/>
+				</ea:section>
+			</ea:tab>
+		</ea:editorArea>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Customer" component="editor-area">
+		<ea:editorArea name="">
+			<ea:tab name="hmc.Sustainability">
+				<ea:section name="hmc.Customer.Sustainability">
+					<ea:attribute qualifier="isPermanentSustainable"/>
+					<ea:attribute qualifier="earnedRewards"/>
+				</ea:section>
+			</ea:tab>
+		</ea:editorArea>
+	</context>
+
+
+	<context merge-by="type" parent="GenericItem" type="Product" component="editor-area" module="pcmbackoffice"
+			 principal="backofficeproductmanagergroup,backofficeproductadministratorgroup">
+		<ea:editorArea name="">
+			<ea:tab name="hmc.tab.product.Sustainability">
+				<ea:section name="hmc.orderentries.Sustainability">
+					<ea:attribute qualifier="carbonFootPrintWeight"/>
+					<ea:attribute qualifier="sustainableMaterials"/>
+				</ea:section>
+			</ea:tab>
+		</ea:editorArea>
+	</context>
+</config>

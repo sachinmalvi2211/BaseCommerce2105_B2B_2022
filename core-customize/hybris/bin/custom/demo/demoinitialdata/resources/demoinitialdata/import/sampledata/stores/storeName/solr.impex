@@ -1,0 +1,18 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$classSystemVersion=systemVersion(catalog(id[default='PowertoolsClassification']),version[default='1.0'])
+$classCatalogVersion=catalogVersion(catalog(id[default='PowertoolsClassification']),version[default='1.0'])
+$classAttribute=classificationAttribute(code,$classSystemVersion)
+$classClass=classificationClass(code,$classCatalogVersion)
+$classAttributeAssignment=classAttributeAssignment($classClass,$classAttribute,$classSystemVersion)
+$productCatalog=powertoolsProductCatalog
+$productCatalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$solrIndexedType=powertoolsProductType
+
+#
+# Add additional indexed properties for the classification features that we want to index
+#
+
+INSERT_UPDATE SolrIndexedProperty;solrIndexedType(identifier)[unique=true];name[unique=true];type(code);sortableType(code);currency[default=false];localized[default=false];multiValue[default=false];facet[default=false];facetType(code);facetSort(code);priority;visible;fieldValueProvider;customFacetSortProvider;rangeSets(name)
+                                 ;$solrIndexedType;carbonFootPrintWeight;string;; ;; ;;MultiSelectOr;Alpha;1000;true;;

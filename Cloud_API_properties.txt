@@ -1,0 +1,24 @@
+acceleratorservices.merchant.callback.url.allowlist=https\://api.cmxuwm6npz-hclameric3-d1-public.model-t.cc.commerce.ondemand.com/acceleratorservices/sop-mock/process
+acceleratorservices.payment.response.url.allowlist=https\://api.cmxuwm6npz-hclameric3-d1-public.model-t.cc.commerce.ondemand.com/acceleratorservices/sop-mock/process
+corsfilter.acceleratorservices.allowedOrigins=* 
+corsfilter.assistedservicewebservices.allowedHeaders=origin content-type accept authorization cache-control x-anonymous-consents x-profile-tag-debug x-consent-reference
+corsfilter.assistedservicewebservices.allowedMethods=GET HEAD OPTIONS PATCH PUT POST DELETE
+corsfilter.assistedservicewebservices.allowedOrigins=*
+corsfilter.assistedservicewebservices.exposedHeaders=x-anonymous-consents occ-personalization-id occ-personalization-time
+corsfilter.commercewebservices.allowedHeaders=origin content-type accept authorization occ-personalization-id occ-personalization-time cache-control x-anonymous-consents x-profile-tag-debug x-consent-reference
+corsfilter.commercewebservices.allowedMethods=GET HEAD OPTIONS PATCH PUT POST DELETE
+corsfilter.commercewebservices.allowedOrigins=* 
+corsfilter.commercewebservices.exposedHeaders=x-anonymous-consents occ-personalization-id occ-personalization-time
+corsfilter.default.allowedOrigins=* 
+corsfilter.permissionswebservices.allowedOrigins=* 
+corsfilter.ycommercewebservices.allowedHeaders=origin content-type accept authorization occ-personalization-id occ-personalization-time cache-control x-anonymous-consents x-profile-tag-debug x-consent-reference
+corsfilter.ycommercewebservices.allowedMethods=GET HEAD OPTIONS PATCH PUT POST DELETE
+corsfilter.ycommercewebservices.allowedOrigins=* 
+corsfilter.ycommercewebservices.exposedHeaders=x-anonymous-consents occ-personalization-id occ-personalization-time
+extendedMerchantCallback=true
+sop.post.url=/acceleratorservices/sop-mock/process
+
+acceleratorservices.payment.response.url.allowlist=https://api.cmxuwm6npz-hclameric3-d1-public.model-t.cc.commerce.ondemand.com/acceleratorservices/sop-mock/process
+acceleratorservices.merchant.callback.url.allowlist=https://api.cmxuwm6npz-hclameric3-d1-public.model-t.cc.commerce.ondemand.com/acceleratorservices/sop-mock/process
+
+sop.post.url=https://api.cmxuwm6npz-hclameric3-d1-public.model-t.cc.commerce.ondemand.com/acceleratorservices/sop-mock/process

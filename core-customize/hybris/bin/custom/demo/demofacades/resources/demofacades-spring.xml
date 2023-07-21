@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+		
+	<context:annotation-config/> 
+
+	<alias alias="simpleSuggestionFacade" name="defaultSimpleSuggestionFacade"/>
+	<bean id="defaultSimpleSuggestionFacade" class="de.hybris.demo.facades.suggestion.impl.DefaultSimpleSuggestionFacade" >
+		<property name="simpleSuggestionService" ref="simpleSuggestionService"/>
+		<property name="userService" ref="userService"/>
+		<property name="categoryService" ref="categoryService"/>
+		<property name="productService" ref="productService"/>
+		<property name="productConverter" ref="carouselProductConverter"/>
+		<property name="cartService" ref="cartService"/>
+	</bean>
+	
+	<bean id="carouselProductConverter" parent="defaultProductConverter">
+		<property name="populators">
+			<list merge="true">
+				<ref bean="productPricePopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="acceleratorVariantOptionDataConverter" alias="variantOptionDataConverter"/> 
+	<bean id="acceleratorVariantOptionDataConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="variantOptionData"/>
+		<property name="populators">
+			<list>
+				<ref bean="acceleratorVariantOptionDataPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultAcceleratorVariantOptionDataPopulator" alias="acceleratorVariantOptionDataPopulator"/>
+	<bean id="defaultAcceleratorVariantOptionDataPopulator"  class="de.hybris.demo.facades.populators.AcceleratorVariantOptionDataPopulator"
+	      parent="variantOptionDataPopulator" >
+		<property name="mediaService" ref="mediaService"/>
+		<property name="mediaContainerService" ref="mediaContainerService"/>
+		<property name="typeService" ref="typeService"/>
+		<property name="imageFormatMapping" ref="imageFormatMapping"/>
+		<property name="variantAttributeMapping">
+			<map>
+				<entry key="ApparelStyleVariantProduct.style" value="styleSwatch"/>
+			</map>
+		</property>
+	</bean>
+
+
+	<alias name="acceleratorGenderConverter" alias="genderConverter"/> 
+	<bean id="acceleratorGenderConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.demo.facades.product.data.GenderData"/>
+			<property name="populators">
+				<list>
+					<ref bean="genderDataPopulator"/>
+				</list>
+			</property>
+	</bean>
+
+	<alias name="defaultGenderDataPopulator" alias="genderDataPopulator"/>
+	<bean id="defaultGenderDataPopulator" class="de.hybris.demo.facades.populators.GenderDataPopulator" >
+		<property name="typeService" ref="typeService"/>
+	</bean>
+
+	<bean id="apparelProductPopulator" class="de.hybris.demo.facades.populators.ApparelProductPopulator" >
+		<property name="genderConverter" ref="genderConverter"/>
+	</bean>
+
+	<!-- Add the apparelProductPopulator to the productConverter -->
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="productConverter"/>
+		<property name="add" ref="apparelProductPopulator"/>
+	</bean>
+
+	<!-- accelerator Image Format Mappings -->
+	<alias name="acceleratorImageFormatMapping" alias="imageFormatMapping"/>
+	<bean id="acceleratorImageFormatMapping" parent="defaultImageFormatMapping">
+		<property name="mapping">
+			<map>
+				<entry key="superZoom" value="1200Wx1200H"/>
+				<entry key="zoom" value="515Wx515H"/>
+				<entry key="store" value="365Wx246H"/>
+				<entry key="product" value="300Wx300H"/>
+				<entry key="thumbnail" value="96Wx96H"/>
+				<entry key="cartIcon" value="65Wx65H"/>
+				<entry key="styleSwatch" value="30Wx30H"/>
+			</map>
+		</property>
+	</bean>
+
+	<alias name="acceleratorProductPrimaryImagePopulator" alias="productPrimaryImagePopulator" />
+	<bean id="acceleratorProductPrimaryImagePopulator" parent="defaultProductPrimaryImagePopulator">
+		<property name="imageFormats">
+			<list>
+				<value>zoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+				<value>cartIcon</value>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="acceleratorProductGalleryImagesPopulator" alias="productGalleryImagesPopulator" />
+	<bean id="acceleratorProductGalleryImagesPopulator" parent="defaultProductGalleryImagesPopulator">
+		<property name="imageFormats">
+			<list>
+				<value>superZoom</value>
+				<value>zoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="customerEmailContext" class="de.hybris.demo.facades.process.email.context.CustomerEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="customerConverter" ref="customerConverter"/>
+	</bean>
+
+	<bean id="forgottenPasswordEmailContext" class="de.hybris.demo.facades.process.email.context.ForgottenPasswordEmailContext" parent="customerEmailContext" scope="prototype" >
+		<property name="customerConverter" ref="customerConverter"/>
+	</bean>
+
+	<bean id="orderNotificationEmailContext" class="de.hybris.demo.facades.process.email.context.OrderNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="orderConverter" ref="orderConverter"/>
+	</bean>
+
+	<bean id="quoteNotificationEmailContext" class="de.hybris.demo.facades.process.email.context.QuoteNotificationEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="quoteService" ref="quoteService"/>
+		<property name="quoteConverter" ref="quoteConverter"/>
+	</bean>
+	
+	<bean id="deliverySentEmailContext" class="de.hybris.demo.facades.process.email.context.DeliverySentEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="consignmentConverter" ref="consignmentConverter"/>
+	</bean>
+	
+	<bean id="readyForPickupEmailContext" class="de.hybris.demo.facades.process.email.context.ReadyForPickupEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="consignmentConverter" ref="consignmentConverter"/>
+	</bean>
+	
+	<bean id="orderCancelledEmailContext" class="de.hybris.demo.facades.process.email.context.OrderCancelledEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="orderConverter" ref="orderConverter"/>
+	</bean>
+	
+	<bean id="orderRefundEmailContext" class="de.hybris.demo.facades.process.email.context.OrderRefundEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="orderConverter" ref="orderConverter"/>
+	</bean>
+	<bean id="consignmentCollectionReminderEmailContext" class="de.hybris.demo.facades.process.email.context.ConsignmentCollectionReminderEmailContext" parent="abstractEmailContext" scope="prototype">
+        <property name="consignmentConverter" ref="consignmentConverter"/>
+        <property name="formatFactory" ref="formatFactory"/>
+        <property name="customerServiceUncollectedConsignmentStrategy" ref="customerServiceUncollectedConsignmentStrategy" />
+        <property name="orderConverter" ref="orderConverter"/>
+    </bean>
+
+	<bean id="orderPartiallyModifiedEmailContext" class="de.hybris.demo.facades.process.email.context.OrderPartiallyModifiedEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="orderConverter" ref="orderConverter"/>
+		<property name="orderEntryConverter" ref="orderEntryConverter"/>
+		<property name="priceDataFactory" ref="priceDataFactory"/>		
+	</bean>
+
+	<bean id="orderPartiallyCanceledEmailContext" class="de.hybris.demo.facades.process.email.context.OrderPartiallyCanceledEmailContext" parent="orderPartiallyModifiedEmailContext" scope="prototype" >
+	</bean>
+
+	<bean id="orderPartiallyRefundedEmailContext" class="de.hybris.demo.facades.process.email.context.OrderPartiallyRefundedEmailContext" parent="orderPartiallyModifiedEmailContext" scope="prototype" >
+	</bean>
+
+	<bean id="notPickedUpConsignmentCanceledEmailContext" class="de.hybris.demo.facades.process.email.context.NotPickedUpConsignmentCanceledEmailContext" parent="abstractEmailContext" scope="prototype" >
+		<property name="consignmentConverter" ref="consignmentConverter"/>
+		<property name="priceDataFactory" ref="priceDataFactory"/>
+	</bean>
+
+	<alias name="yacceleratorSearchPagePointOfServiceDistancePopulator" alias="searchPagePointOfServiceDistancePopulator" />
+	<bean id="yacceleratorSearchPagePointOfServiceDistancePopulator" class="de.hybris.demo.facades.storefinder.populators.SearchPagePointOfServiceDistancePopulator" >
+		<property name="pointOfServiceDistanceConverter" ref="pointOfServiceDistanceConverter"/>
+	</bean>
+
+	<bean id="genderData" class="de.hybris.demo.facades.product.data.GenderData" scope="prototype"/>
+
+
+	<bean id="defaultSustainableOrderEntryPopulator" class="de.hybris.demo.facades.populators.SustainableCartEntryPopulator" />
+
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="orderEntryConverter"/>
+		<property name="add" ref="defaultSustainableOrderEntryPopulator"/>
+	</bean>
+
+
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="customerConverter"/>
+		<property name="add" ref="sustainableCustomerPopulator"/>
+	</bean>
+
+	<bean id="sustainableCustomerPopulator" class="de.hybris.demo.facades.populators.SustainableCustomerPopulator" >
+	</bean>
+
+	<!-- Populator Lists -->
+
+	<alias name="demoProductSustainDetailPopulator" alias="demoProductSustainDetailPopulator"/>
+	<bean id="demoProductSustainDetailPopulator" parent="baseProductPopulator"
+		  class="de.hybris.demo.facades.populators.ProductSustainDetailsPopulator">
+	</bean>
+
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="productConverter"/>
+		<property name="add" ref="demoProductSustainDetailPopulator"/>
+	</bean>
+
+	<alias name="searchResultSustainProductPopulator" alias="searchResultSustainProductPopulator"/>
+	<bean id="searchResultSustainProductPopulator" class="de.hybris.demo.facades.populators.SearchResultSustainProductPopulator">
+	</bean>
+
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="commerceSearchResultProductConverter"/>
+		<property name="add" ref="searchResultSustainProductPopulator"/>
+	</bean>
+
+	<alias name="demoCartFacade" alias="cartFacade"/>
+	<bean id="demoCartFacade" class="de.hybris.demo.facades.order.impl.DemoCartFacade">
+		<property name="cartService" ref="cartService"/>
+		<property name="miniCartConverter" ref="miniCartConverter"/>
+		<property name="cartConverter" ref="cartConverter"/>
+		<property name="commerceCartService" ref="commerceCartService"/>
+		<property name="productService" ref="productService"/>
+		<property name="cartModificationConverter" ref="cartModificationConverter"/>
+		<property name="cartRestorationConverter" ref="cartRestorationConverter"/>
+		<property name="baseSiteService" ref="baseSiteService"/>
+		<property name="userService" ref="userService"/>
+		<property name="pointOfServiceService" ref="pointOfServiceService"/>
+		<property name="priceDataFactory" ref="priceDataFactory"/>
+		<property name="deliveryService" ref="deliveryService"/>
+		<property name="countryConverter" ref="countryConverter"/>
+		<property name="groupCartModificationListConverter" ref="groupCartModificationListConverter"/>
+		<property name="orderEntryConverter" ref="orderEntryConverter"/>
+		<property name="productConfigurationMergeStrategies" ref="productConfigurationMergeStrategies"/>
+		<property name="productFacade" ref="productFacade"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="commerceCartParameterConverter" ref="commerceCartParameterConverter"/>
+	</bean>
+
+	<!--<alias name="demoCustomerReverseConverter" alias="customerReverseConverter"/>
+	<bean id="demoCustomerReverseConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.core.model.user.CustomerModel"/>
+		<property name="populators">
+			<list>
+				<ref bean="demoCustomerReversePopulator"/>
+			</list>
+		</property>
+	</bean>-->
+
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="customerReverseConverter"/>
+		<property name="add" ref="demoCustomerReversePopulator"/>
+	</bean>
+
+
+	<!--<alias name="demoCustomerReversePopulator" alias="b2BCustomerReversePopulator"/>-->
+	<bean id="demoCustomerReversePopulator" class="de.hybris.demo.facades.populators.DemoCustomerReversePopulator" >
+	</bean>
+
+	<!--<alias name="demoB2BCartFacade" alias="b2bCartFacade"/>
+	<bean id="demoB2BCartFacade" class="de.hybris.demo.facades.order.impl.DemoB2BCartFacade">
+		<property name="cartService" ref="b2bCartService"/>
+		<property name="checkoutFacade" ref="b2bCheckoutFacade"/>
+		<property name="b2bProductFacade" ref="productVariantFacade" />
+		<property name="cartFacade" ref="cartFacade" />
+		<property name="groupCartModificationListConverter" ref="groupCartModificationListConverter" />
+	</bean>
+-->
+	<alias name="demoAddToCartMethodHook" alias="demoAddToCartMethodHook"/>
+	<bean id="demoAddToCartMethodHook" class="de.hybris.demo.facades.hooks.DemoAddToCartMethodHook" >
+	</bean>
+
+	<bean id="demoCommerceAddToCartHookMergeDirective" depends-on="commerceAddToCartMethodHooks" parent="listMergeDirective" >
+		<property name="add" ref="demoAddToCartMethodHook" />
+	</bean>
+
+	<bean id="demoUpdateCartEntryHook"
+		  class="de.hybris.demo.facades.hooks.DemoUpdateCartEntryHook">
+	</bean>
+
+	<bean id="demoUpdateCartEntryHookMergeDirective" depends-on="commerceUpdateCartEntryMethodHooks" parent="listMergeDirective">
+		<property name="add" ref="demoUpdateCartEntryHook"/>
+	</bean>
+
+	<alias name="demoCustomerFacade" alias="customerFacade"/>
+	<bean id="demoCustomerFacade" class="de.hybris.demo.facades.customer.impl.DemoCustomerFacade">
+		<property name="userService" ref="userService"/>
+		<property name="customerAccountService" ref="customerAccountService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="cartService" ref="cartService"/>
+		<property name="commerceCartService" ref="commerceCartService"/>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="storeSessionFacade" ref="storeSessionFacade"/>
+		<property name="userFacade" ref="userFacade"/>
+		<property name="businessProcessService" ref="businessProcessService"/>
+
+		<property name="addressReversePopulator" ref="addressReversePopulator"/>
+		<property name="customerReversePopulator" ref="customerReversePopulator"/>
+		<property name="customerConverter" ref="customerConverter"/>
+		<property name="addressConverter" ref="addressConverter"/>
+		<property name="titleConverter" ref="titleConverter"/>
+		<property name="creditCardPaymentInfoConverter" ref="creditCardPaymentInfoConverter"/>
+
+		<property name="customerNameStrategy" ref="customerNameStrategy"/>
+		<property name="passwordEncoderService" ref="passwordEncoderService"/>
+		<property name="orderFacade" ref="orderFacade"/>
+		<property name="cartCleanStrategy" ref="cartValidationStrategy"/>
+		<property name="baseSiteService" ref="baseSiteService"/>
+		<property name="baseStoreService" ref="baseStoreService"/>
+
+		<property name="eventService" ref="eventService"/>
+		<property name="userMatchingService" ref="userMatchingService"/>
+	</bean>
+
+	<alias alias="demoCommercePlaceOrderMethodHook" name="demoCommercePlaceOrderMethodHook"/>
+	<bean id="demoCommercePlaceOrderMethodHook" class="de.hybris.demo.facades.hooks.DemoCommercePlaceOrderMethodHook" >
+		<property name="orderService" ref="orderService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="baseStoreService" ref="baseStoreService"/>
+		<property name="baseSiteService" ref="baseSiteService"/>
+		<property name="promotionsService" ref="promotionsService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="calculationService" ref="calculationService"/>
+	</bean>
+
+	<bean id="demoCommercePlaceOrderMethodHookListMergeDirective" depends-on="commercePlaceOrderMethodHooks" parent="listMergeDirective" >
+		<property name="add" ref="demoCommercePlaceOrderMethodHook" />
+	</bean>
+
+</beans>
