@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<!--
+		Example Data POJO
+	
+	<bean class="yemptypackage.data.MyPojo">
+		<property name="id" type="String"/>
+		<property name="flag" type="boolean"/>
+	</bean>
+	-->
+
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.order.OrderEntryWsDTO">
+		<description>Representation of an Order entry</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">OrderEntry</hint>
+		</hints>
+		<property name="isSustainableEntry" type="Boolean" >
+			<description>Consider sustainable entry Boolean Field</description>
+		</property>
+		<property name="carbonFootPrintWeight" type="String" >
+			<description>The carbonFootPrint value in Weight is added to cartEntry</description>
+		</property>
+		<property name="carbonOffsetCredit" type="String" >
+			<description>The carbonOffsetCredit value for product is added to cartEntry.</description>
+		</property>
+		<property name="entryTotalSustanabilityValue" type="String" >
+			<description>The total sustainability value in of cartEntry.</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.user.UserWsDTO"
+		  extends="de.hybris.platform.commercewebservicescommons.dto.user.PrincipalWsDTO">
+		<description>Representation of an User</description>
+		<hints>
+			<hint name="wsRelated"/>
+			<hint name="alias">User</hint>
+		</hints>
+		<property name="isPermanentSustainable" type="Boolean" >
+			<description>Consider Permanent sustainable customer</description>
+		</property>
+	</bean>
+
+	<bean class="de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO">
+		<property name="carbonFootPrintWeight" type="String"/>
+		<property name="sustainableMaterials" type="String"/>
+	</bean>
+</beans>

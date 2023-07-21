@@ -20,7 +20,34 @@
     </welcome-file-list>
     	
     <!-- filters -->
-    	
+
+<filter>
+
+        <filter-name>CORS</filter-name>
+
+        <filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+
+        <init-param>
+
+            <param-name>cors.supportedMethods</param-name>
+
+            <param-value>GET, POST, HEAD, PUT, PATCH, DELETE, OPTIONS</param-value>
+
+        </init-param>
+
+        <init-param>
+
+            <!-- fix for http://code.google.com/p/chromium/issues/detail?id=108394 -->
+
+            <param-name>cors.supportedHeaders</param-name>
+
+            <param-value>origin, content-type, accept, authorization</param-value>
+
+        </init-param>
+
+    </filter>
+
+ 
 	
     <filter>
         		
@@ -72,6 +99,11 @@
         	
     </filter-mapping>
     	
+		
+	<filter-mapping>
+			<filter-name>CORS</filter-name>
+			<url-pattern>/*</url-pattern>
+	</filter-mapping>
     <!-- resource filter -->
     	
     <filter>

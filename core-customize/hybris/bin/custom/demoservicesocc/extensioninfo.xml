@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+--><extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+        	
+    
+    <extension abstractclassprefix="Generated" classprefix="Demoservicesocc" description="demoservicesocc extension" jaloLogicFree="true" managername="DemoservicesoccManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="demoservicesocc">
+                		
+        
+        <!-- you should add all required extensions to this list, except platform extensions which are automatically required -->
+                		
+        
+        <requires-extension name="commercewebservices"/>
+        <requires-extension name="b2bocc"/>
+        <requires-extension name="commerceservices"/>
+        <requires-extension name="commercefacades"/>
+        <requires-extension name="commercewebservicescommons"/>
+        <requires-extension name="ordermanagementfacades"/>
+
+        <coremodule generated="true" manager="com.demo.services.jalo.DemoservicesoccManager" packageroot="com.demo.services"/>
+                		
+        
+        	
+    
+    </extension>
+        
+
+</extensioninfo>

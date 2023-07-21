@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.demo.services.controllers"/>
+
+
+    <bean parent="fieldSetLevelMapping" id="orderEntryWsDTOFieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.commercewebservicescommons.dto.order.OrderEntryWsDTO"/>
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC" value="entryNumber,quantity,deliveryPointOfService,configurationInfos,statusSummaryList"/>
+                <entry key="DEFAULT" value="BASIC,totalPrice,product(DEFAULT),cancellableQuantity,cancelledItemsPrice(DEFAULT),returnableQuantity,returnedItemsPrice(DEFAULT),isSustainableEntry,carbonFootPrintWeight,carbonOffsetCredit,entryTotalSustanabilityValue"/>
+                <entry key="FULL"
+                       value="product(FULL),deliveryPointOfService(FULL),entryNumber,updateable,deliveryMode(FULL),quantity,basePrice(FULL),totalPrice(FULL),configurationInfos(FULL),statusSummaryList,cancellableQuantity,cancelledItemsPrice(FULL),returnableQuantity,returnedItemsPrice(FULL),isSustainableEntry,carbonFootPrintWeight,carbonOffsetCredit,entryTotalSustanabilityValue"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean parent="fieldSetLevelMapping" id="userWsDTOFieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.commercewebservicescommons.dto.user.UserWsDTO"/>
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC"
+                       value="lastName,title,titleCode,displayUid,defaultAddress,language,firstName,currency,uid,name,customerId,deactivationDate,isPermanentSustainable"/>
+                <entry key="DEFAULT"
+                       value="lastName,title,titleCode,displayUid,defaultAddress(DEFAULT),language(DEFAULT),firstName,currency(DEFAULT),uid,name,customerId,deactivationDate,isPermanentSustainable"/>
+                <entry key="FULL"
+                       value="lastName,title,titleCode,displayUid,defaultAddress(FULL),language(FULL),firstName,currency(FULL),uid,name,customerId,deactivationDate,isPermanentSustainable"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean parent="fieldSetLevelMapping" id="productWsDTOFieldSetLevelMapping">
+            <property name="dtoClass"
+                      value="de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO" />
+            <property name="levelMapping">
+                <map>
+                    <entry key="BASIC"
+                           value="purchasable,stock,name,baseProduct,availableForPickup,code,url,price,carbonFootPrintWeight,sustainableMaterials" />
+                    <entry key="DEFAULT"
+                           value="summary,averageRating,purchasable,stock(DEFAULT),description,variantMatrix(DEFAULT),name,baseOptions(DEFAULT),baseProduct,availableForPickup,variantOptions(DEFAULT),code,url,price(DEFAULT),numberOfReviews,manufacturer,categories(BASIC),priceRange,multidimensional,firstVariantCode,firstVariantImage,volumePricesFlag,carbonFootPrintWeight,sustainableMaterials" />
+                    <entry key="FULL"
+                           value="summary,productReferences(FULL),classifications(FULL),averageRating,purchasable,volumePrices(FULL),variantType,stock(FULL),description,variantMatrix(FULL),name,baseOptions(FULL),baseProduct,availableForPickup,variantOptions(FULL),reviews(FULL),code,url,price(FULL),numberOfReviews,manufacturer,volumePricesFlag,futureStocks(FULL),images(FULL),categories(FULL),potentialPromotions(FULL),priceRange,multidimensional,firstVariantCode,firstVariantImage,carbonFootPrintWeight,sustainableMaterials" />
+                </map>
+            </property>
+        </bean>
+</beans>
