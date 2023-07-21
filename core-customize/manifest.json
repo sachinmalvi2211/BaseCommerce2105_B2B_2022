@@ -41,7 +41,6 @@
 		"b2bacceleratorfacades",
 		"b2bacceleratorservices",
 		"b2bocc",
-		"b2bocctests",
 		"b2bwebservicescommons",
 		"commerceorgaddon",
 		"commerceorgsamplesaddon",
@@ -94,21 +93,17 @@
 		"commerceservicesbackoffice",
 		"commercewebservices",
 		"commercewebservicescommons",
-		"commercewebservicestests",
 		"yocc",
-		"yocctests",
 		"configurablebundleaddon",
 		"configurablebundlebackoffice",
 		"configurablebundlefacades",
 		"configurablebundleocc",
-		"configurablebundleocctests",
 		"configurablebundleservices",
 		"configurablebundlecockpits",
 		"sapproductconfigb2baddon",
 		"sapproductconfigb2bservices",
 		"sapproductconfigfacades",
 		"sapproductconfigocc",
-		"sapproductconfigocctests",
 		"sapproductconfigrules",
 		"sapproductconfigrulesbackoffice",
 		"sapproductconfigruntimeinterface",
@@ -146,7 +141,6 @@
 		"customerticketingaddon",
 		"customerticketingfacades",
 		"customerticketingocc",
-		"customerticketingocctests",
 		"ticketsystem",
 		"ticketsystembackoffice",
 		"datahubadapter",
@@ -161,12 +155,10 @@
 		"eventtrackingwsaddon",
 		"inboundservices",
 		"integrationbackoffice",
-		"integrationbackofficetest",
 		"integrationmonitoringbackoffice",
 		"integrationservices",
 		"odata2services",
 		"odata2webservices",
-		"odata2webservicesfeaturetests",
 		"outboundservices",
 		"outboundsync",
 		"outboundsyncbackoffice",
@@ -272,7 +264,6 @@
 		"textfieldconfiguratortemplatebackoffice",
 		"textfieldconfiguratortemplatefacades",
 		"textfieldconfiguratortemplateocc",
-		"textfieldconfiguratortemplateocctests",
 		"textfieldconfiguratortemplateservices",
 		"timedaccesspromotionengineaddon",
 		"timedaccesspromotionenginebackoffice",
@@ -574,12 +565,10 @@
     ],
     "tests": {
         "extensions": [],
-        "annotations": [
-            "UnitTests",
-            "IntegrationTests"
+        "annotations": [      
         ],
         "packages": [
-            "com.acme.*"
+            
         ]
     }
 }
